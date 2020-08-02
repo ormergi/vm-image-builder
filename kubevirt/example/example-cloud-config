@@ -1,0 +1,11 @@
+#cloud-config
+password: fedora
+chpasswd: { expire: False }
+ssh_pwauth: yes
+bootcmd:
+  - dnf install -y qemu-guest-agent stress
+  - dnf clean all
+runcmd:
+  - sudo systemctl enable qemu-guest-agent
+  - sudo systemctl start qemu-guest-agent
+  - sudo shutdown -h now

@@ -1,0 +1,9 @@
+#cloud-config
+password: centos
+chpasswd: { expire: False }
+ssh_pwauth: yes
+bootcmd:
+  - dnf install -y nginx
+  - dnf clean all
+runcmd:
+  - sudo shutdown -h now

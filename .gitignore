@@ -1,0 +1,7 @@
+# Images files
+*.iso
+*.img
+*.qcow2
+
+# Image build direcotries
+*_build/

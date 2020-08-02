@@ -1,0 +1,29 @@
+---
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachineInstance
+metadata:
+  labels:
+  name: $VMI_NAME
+spec:
+  domain:
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: containerdisk
+      interfaces:
+      - masquerade: {}
+        name: default
+      rng: {}
+    resources:
+      requests:
+        memory: 1024M
+  terminationGracePeriodSeconds: 0
+  networks:
+    - name: default
+      pod: {}
+  volumes:
+    - containerDisk:
+        image: $VMI_IMAGE
+        imagePullPolicy: Always
+      name: containerdisk
